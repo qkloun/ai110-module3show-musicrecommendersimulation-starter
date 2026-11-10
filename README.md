@@ -29,6 +29,16 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
+### Real world system
+
+Real-world services like Spotify and YouTube mostly combine two approaches. Collaborative filtering recommends what similar listeners enjoyed (“people who like X also like Y”). Content-based filtering recommends songs whose attributes resemble what you already like. They also learn from behavior such as skips, replays, and playlist adds. This simulation uses only content-based filtering, since it has a song catalog but no listening history. It prioritizes matching a song’s vibe, meaning how intense and how positive it feels, over matching labels. Genre and mood act as smaller bonuses, so a great match from another genre can still make the list.
+
+### Features used
+
+Song: energy (heaviest weight), valence, acousticness, genre, and mood. tempo_bpm and danceability are left out because in this dataset they move almost in lockstep with energy, so including them would count energy twice. artist is used only in ranking, to limit the list to one song per artist.
+
+UserProfile: favorite_genre, favorite_mood, target_energy (0–1), likes_acoustic (true/false), and an optional target_valence (0–1).
+
 ---
 
 ## Getting Started
