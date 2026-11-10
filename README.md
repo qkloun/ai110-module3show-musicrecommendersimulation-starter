@@ -39,6 +39,18 @@ Song: energy (heaviest weight), valence, acousticness, genre, and mood. tempo_bp
 
 UserProfile: favorite_genre, favorite_mood, target_energy (0–1), likes_acoustic (true/false), and an optional target_valence (0–1).
 
+### Algoriithm recipe
+
+The recommender compares every song in the catalog to the user’s taste profile and gives it a score out of 5.0. Most points come from how closely the song’s feel (energy, valence, acousticness) matches what the user wants. Smaller bonuses go to songs in the user’s favorite genre or mood. The highest-scoring songs are recommended, with at most one per artist, and each comes with a short explanation of why it was picked.
+
+### Expected biases and limitations
+
+- Labels can still override the vibe.
+- Genre and mood matching is all-or-nothing.
+- The catalog is uneven.
+- The data reflects my assumptions.
+- Energy dominates.
+- The artist cap can hide favorites.
 ---
 
 ## Getting Started
