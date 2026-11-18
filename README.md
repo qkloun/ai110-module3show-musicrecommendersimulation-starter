@@ -17,17 +17,21 @@ Replace this paragraph with your own summary of what your version does.
 
 ## How The System Works
 
-Explain your design in plain language.
+What each Song uses: genre, mood, energy (how intense it feels), valence (how happy or sad it feels), and acousticness (how acoustic or electronic it sounds). Tempo and danceability are stored but not used, because they rise and fall with energy and would count it twice.
 
-Some prompts to answer:
+What the UserProfile stores: the user’s favorite genre, favorite mood, the energy level they want, how upbeat they want songs to feel, and whether they like acoustic music.
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+How a song is scored: each song earns up to 5 points based on how well it fits the user.
 
-You can include a simple diagram or bullet list if helpful.
+- Energy: up to 2 points. The closer the song is to the user’s target, the more points it gets, so a calm listener isn’t - pushed toward the loudest song.
+- Valence: up to 1 point, also based on closeness.
+- Acoustic sound: up to 0.5 points if it matches the user’s preference.
+- Genre: +1 point if it’s the user’s favorite.
+- Mood: +0.5 points if it’s the user’s favorite.
+
+How a song feels counts for more than its labels. That way, a great match from another genre can still be recommended.
+
+How songs are chosen: every song is scored, then sorted from highest to lowest. Only one song per artist is kept, so the list has variety. The top five are recommended, each with a short reason, such as “close to your energy level” or “matches your favorite genre.”
 
 ### Real world system
 
