@@ -47,11 +47,7 @@ class Recommender:
         return "Explanation placeholder"
 
 def load_songs(csv_path: str) -> List[Dict]:
-    """
-    Loads songs from a CSV file into a list of dictionaries.
-    Numeric columns are converted so they can be used in math later.
-    Required by src/main.py
-    """
+    """Load songs from a CSV file into dictionaries, converting numeric columns to int/float."""
     int_fields = ["id"]
     float_fields = ["energy", "tempo_bpm", "valence", "danceability", "acousticness"]
 
@@ -73,15 +69,12 @@ def load_songs(csv_path: str) -> List[Dict]:
     return songs
 
 def _pref(user_prefs: Dict, key: str, short_key: str):
-    """Reads a preference by its full name, falling back to the short name main.py uses."""
+    """Return a preference by its full key (e.g. favorite_genre), falling back to its short key (e.g. genre)."""
     return user_prefs.get(key, user_prefs.get(short_key))
 
 
 def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
-    """
-    Scores a single song against user preferences (maximum 5.0 points).
-    Required by recommend_songs() and src/main.py
-    """
+    """Score one song against the user's preferences (max 5.0) and return (score, reasons)."""
     score = 0.0
     reasons = []
 
@@ -124,10 +117,7 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
 
 
 def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tuple[Dict, float, str]]:
-    """
-    Functional implementation of the recommendation logic.
-    Required by src/main.py
-    """
+    """Score every song, rank highest first with one song per artist, and return the top k."""
     target_energy = _pref(user_prefs, "target_energy", "energy") or 0.5
 
     # 1. Judge every song: build (song, score, reasons) for the whole catalog
