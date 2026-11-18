@@ -94,15 +94,46 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Sample Recommendation Output
 
-Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
+Default profile: `{"genre": "pop", "mood": "happy", "energy": 0.8}`
 
 ```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
+Loaded 18 songs from data/songs.csv
+
+============================================================
+  Top 5 recommendations
+  Profile: genre=pop, mood=happy, energy=0.8
+============================================================
+
+1. Sunrise City by Neon Echo
+   Score: 3.46   (pop, happy)
+   Why:
+     - energy 0.82 is close to your target of 0.80
+     - matches your favorite genre (pop)
+     - matches your favorite mood (happy)
+
+2. Gym Hero by Max Pulse
+   Score: 2.74   (pop, intense)
+   Why:
+     - energy 0.93 is close to your target of 0.80
+     - matches your favorite genre (pop)
+
+3. Rooftop Lights by Indigo Parade
+   Score: 2.42   (indie pop, happy)
+   Why:
+     - energy 0.76 is close to your target of 0.80
+     - matches your favorite mood (happy)
+
+4. Concrete Crown by Kilo Verse
+   Score: 1.96   (hip-hop, confident)
+   Why:
+     - energy 0.78 is close to your target of 0.80
+
+5. Barn Dance Fever by Copper Creek
+   Score: 1.90   (bluegrass, energetic)
+   Why:
+     - energy 0.85 is close to your target of 0.80
+
+============================================================
 ```
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
