@@ -135,6 +135,181 @@ Loaded 18 songs from data/songs.csv
 
 ============================================================
 ```
+### High-Energy Pop
+```
+============================================================
+  Top 5 recommendations
+  Profile: favorite_genre=pop, favorite_mood=happy, target_energy=0.85, target_valence=0.8, likes_acoustic=False
+============================================================
+
+1. Sunrise City by Neon Echo
+   Score: 4.81   (pop, happy)
+   Why:
+     - energy 0.82 is close to your target of 0.85
+     - its mood level (valence) fits what you want
+     - it has the electronic sound you like
+     - matches your favorite genre (pop)
+     - matches your favorite mood (happy)
+
+2. Gym Hero by Max Pulse
+   Score: 4.29   (pop, intense)
+   Why:
+     - energy 0.93 is close to your target of 0.85
+     - its mood level (valence) fits what you want
+     - it has the electronic sound you like
+     - matches your favorite genre (pop)
+
+3. Rooftop Lights by Indigo Parade
+   Score: 3.64   (indie pop, happy)
+   Why:
+     - energy 0.76 is close to your target of 0.85
+     - its mood level (valence) fits what you want
+     - matches your favorite mood (happy)
+
+4. Concrete Crown by Kilo Verse
+   Score: 3.07   (hip-hop, confident)
+   Why:
+     - energy 0.78 is close to your target of 0.85
+     - it has the electronic sound you like
+
+5. Barn Dance Fever by Copper Creek
+   Score: 3.03   (bluegrass, energetic)
+   Why:
+     - energy 0.85 is close to your target of 0.85
+     - its mood level (valence) fits what you want
+
+============================================================
+```
+### Chill Lofi
+```
+============================================================
+  Top 5 recommendations
+  Profile: favorite_genre=lofi, favorite_mood=chill, target_energy=0.38, target_valence=0.6, likes_acoustic=True
+============================================================
+
+1. Library Rain by Paper Lanterns
+   Score: 4.87   (lofi, chill)
+   Why:
+     - energy 0.35 is close to your target of 0.38
+     - its mood level (valence) fits what you want
+     - it has the acoustic sound you like
+     - matches your favorite genre (lofi)
+     - matches your favorite mood (chill)
+
+2. Midnight Coding by LoRoom
+   Score: 4.73   (lofi, chill)
+   Why:
+     - energy 0.42 is close to your target of 0.38
+     - its mood level (valence) fits what you want
+     - it has the acoustic sound you like
+     - matches your favorite genre (lofi)
+     - matches your favorite mood (chill)
+
+3. Spacewalk Thoughts by Orbit Bloom
+   Score: 3.71   (ambient, chill)
+   Why:
+     - energy 0.28 is close to your target of 0.38
+     - its mood level (valence) fits what you want
+     - it has the acoustic sound you like
+     - matches your favorite mood (chill)
+
+4. Coffee Shop Stories by Slow Stereo
+   Score: 3.31   (jazz, relaxed)
+   Why:
+     - energy 0.37 is close to your target of 0.38
+     - its mood level (valence) fits what you want
+     - it has the acoustic sound you like
+
+5. Slow Burn by Velvet Hours
+   Score: 3.00   (r&b, romantic)
+   Why:
+     - energy 0.45 is close to your target of 0.38
+     - its mood level (valence) fits what you want
+
+============================================================
+```
+### Deep Intense Rock
+```
+============================================================
+  Top 5 recommendations
+  Profile: favorite_genre=rock, favorite_mood=intense, target_energy=0.92, target_valence=0.45, likes_acoustic=False
+============================================================
+
+1. Storm Runner by Voltline
+   Score: 4.90   (rock, intense)
+   Why:
+     - energy 0.91 is close to your target of 0.92
+     - its mood level (valence) fits what you want
+     - it has the electronic sound you like
+     - matches your favorite genre (rock)
+     - matches your favorite mood (intense)
+
+2. Gym Hero by Max Pulse
+   Score: 3.64   (pop, intense)
+   Why:
+     - energy 0.93 is close to your target of 0.92
+     - it has the electronic sound you like
+     - matches your favorite mood (intense)
+
+3. Afterhours by Pulse Theory
+   Score: 3.25   (edm, dark)
+   Why:
+     - energy 0.88 is close to your target of 0.92
+     - its mood level (valence) fits what you want
+     - it has the electronic sound you like
+
+4. Iron Tide by Grave Signal
+   Score: 3.15   (metal, angry)
+   Why:
+     - energy 0.97 is close to your target of 0.92
+     - it has the electronic sound you like
+
+5. Concrete Crown by Kilo Verse
+   Score: 3.08   (hip-hop, confident)
+   Why:
+     - energy 0.78 is close to your target of 0.92
+     - its mood level (valence) fits what you want
+     - it has the electronic sound you like
+
+============================================================
+```
+### Conflict: high energy + sad mood
+```
+============================================================
+  Top 5 recommendations
+  Profile: favorite_genre=pop, favorite_mood=sad, target_energy=0.9, target_valence=0.1
+============================================================
+
+1. Gym Hero by Max Pulse
+   Score: 3.27   (pop, intense)
+   Why:
+     - energy 0.93 is close to your target of 0.90
+     - matches your favorite genre (pop)
+
+2. Sunrise City by Neon Echo
+   Score: 3.10   (pop, happy)
+   Why:
+     - energy 0.82 is close to your target of 0.90
+     - matches your favorite genre (pop)
+
+3. Afterhours by Pulse Theory
+   Score: 2.76   (edm, dark)
+   Why:
+     - energy 0.88 is close to your target of 0.90
+
+4. Iron Tide by Grave Signal
+   Score: 2.74   (metal, angry)
+   Why:
+     - energy 0.97 is close to your target of 0.90
+     - its mood level (valence) fits what you want
+
+5. Storm Runner by Voltline
+   Score: 2.60   (rock, intense)
+   Why:
+     - energy 0.91 is close to your target of 0.90
+
+============================================================
+```
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
 

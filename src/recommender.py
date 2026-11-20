@@ -46,6 +46,17 @@ class Recommender:
         # TODO: Implement explanation logic
         return "Explanation placeholder"
 
+# Scoring weights (Algorithm Recipe)
+BASELINE_WEIGHTS = {"energy": 2.0, "valence": 1.0, "acoustic": 0.5, "genre": 1.0, "mood": 0.5}
+
+# Experiment: Weight Shift. Energy doubled (2.0 -> 4.0), genre halved (1.0 -> 0.5).
+# Set USE_WEIGHT_SHIFT = False to go back to the baseline recipe.
+USE_WEIGHT_SHIFT = True
+WEIGHT_SHIFT = {**BASELINE_WEIGHTS, "energy": 4.0, "genre": 0.5}
+
+WEIGHTS = WEIGHT_SHIFT if USE_WEIGHT_SHIFT else BASELINE_WEIGHTS
+
+
 def load_songs(csv_path: str) -> List[Dict]:
     """Load songs from a CSV file into dictionaries, converting numeric columns to int/float."""
     int_fields = ["id"]
@@ -74,43 +85,43 @@ def _pref(user_prefs: Dict, key: str, short_key: str):
 
 
 def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
-    """Score one song against the user's preferences (max 5.0) and return (score, reasons)."""
+    """Score one song against the user's preferences (max 6.5 with the weight shift, 5.0 baseline) and return (score, reasons)."""
     score = 0.0
     reasons = []
 
-    # Energy closeness: up to 2.0 points
+    # Energy closeness: up to WEIGHTS["energy"] points
     target_energy = _pref(user_prefs, "target_energy", "energy")
     if target_energy is not None:
         closeness = 1 - abs(song["energy"] - target_energy)
-        score += 2.0 * closeness
+        score += WEIGHTS["energy"] * closeness
         if closeness >= 0.85:
             reasons.append(f"energy {song['energy']:.2f} is close to your target of {target_energy:.2f}")
 
-    # Valence closeness: up to 1.0 point
+    # Valence closeness: up to WEIGHTS["valence"] points
     target_valence = _pref(user_prefs, "target_valence", "valence")
     if target_valence is not None:
         closeness = 1 - abs(song["valence"] - target_valence)
-        score += 1.0 * closeness
+        score += WEIGHTS["valence"] * closeness
         if closeness >= 0.85:
             reasons.append("its mood level (valence) fits what you want")
 
-    # Acoustic fit: up to 0.5 points
+    # Acoustic fit: up to WEIGHTS["acoustic"] points
     likes_acoustic = user_prefs.get("likes_acoustic")
     if likes_acoustic is not None:
         fit = song["acousticness"] if likes_acoustic else 1 - song["acousticness"]
-        score += 0.5 * fit
+        score += WEIGHTS["acoustic"] * fit
         if fit >= 0.7:
             reasons.append("it has the acoustic sound you like" if likes_acoustic
                            else "it has the electronic sound you like")
 
-    # Genre match: +1.0
+    # Genre match: +WEIGHTS["genre"]
     if song["genre"] == _pref(user_prefs, "favorite_genre", "genre"):
-        score += 1.0
+        score += WEIGHTS["genre"]
         reasons.append(f"matches your favorite genre ({song['genre']})")
 
-    # Mood match: +0.5
+    # Mood match: +WEIGHTS["mood"]
     if song["mood"] == _pref(user_prefs, "favorite_mood", "mood"):
-        score += 0.5
+        score += WEIGHTS["mood"]
         reasons.append(f"matches your favorite mood ({song['mood']})")
 
     return score, reasons
