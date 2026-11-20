@@ -2,60 +2,53 @@
 
 ## 1. Model Name  
 
-Give your model a short, descriptive name.  
-Example: **VibeFinder 1.0**  
+**VibeFinder 1.0**
 
 ---
 
 ## 2. Intended Use  
 
-Describe what your recommender is designed to do and who it is for. 
+**Goal:** VibeFinder suggests 5 songs that match a listener's taste. It predicts which songs from a small catalog will feel right to the listener, based on the energy, mood, and style they ask for.
 
-Prompts:  
+**Intended use:** This is a classroom project for learning how recommender systems work. It's meant for testing ideas, comparing user profiles, and spotting bias.
 
-- What kind of recommendations does it generate  
-- What assumptions does it make about the user  
-- Is this for real users or classroom exploration  
+**Not intended for:** real listeners or real music apps. The catalog is tiny and made up, and the system knows nothing about lyrics, artists, or listening history. It also assumes each user can describe their taste with a few numbers and labels, which real people usually can't.
 
 ---
 
 ## 3. How the Model Works  
 
-Explain your scoring approach in simple language.  
+Each song gets a score out of 5 points based on how well it fits the listener.
 
-Prompts:  
+- **Energy** (up to 2 points): songs closer to the energy level the listener wants get more points.
+- **Happiness of the sound** (up to 1 point): songs closer to how upbeat or dark the listener wants get more points.
+- **Acoustic sound** (up to 0.5 points): points for sounding acoustic or electronic, whichever the listener prefers.
+- **Genre** (1 point): a bonus if the song is the listener's favorite genre.
+- **Mood** (0.5 points): a bonus if the song has the listener's favorite mood.
 
-- What features of each song are used (genre, energy, mood, etc.)  
-- What user preferences are considered  
-- How does the model turn those into a score  
-- What changes did you make from the starter logic  
+The songs are sorted from highest to lowest score. Only one song per artist is allowed, and the top 5 are recommended. Each song comes with a short list of reasons, such as "matches your favorite genre."
 
-Avoid code here. Pretend you are explaining the idea to a friend who does not program.
+**Changes from the starter logic:** I added happiness of the sound and acoustic preference, rewarded songs for being *close* to a target instead of just high or low, and added the one-song-per-artist rule.
 
 ---
 
 ## 4. Data  
 
-Describe the dataset the model uses.  
+- **18 songs:** the 10 starter songs, plus 8 I added.
+- **15 genres**, including pop, lofi, rock, jazz, hip-hop, classical, metal, and country. Most genres have only one song.
+- **14 moods**, such as happy, chill, intense, and melancholic.
+- **Features used:** genre, mood, energy, how happy the song sounds (valence), and acousticness. Tempo and danceability are in the file but not used, because they mostly repeat energy.
 
-Prompts:  
-
-- How many songs are in the catalog  
-- What genres or moods are represented  
-- Did you add or remove data  
-- Are there parts of musical taste missing in the dataset  
+**Limits:** The catalog is very small, and I made up the numbers for the added songs. It leans toward upbeat and energetic music. It has no lyrics, no release year, and no information about whether a song has vocals.
 
 ---
 
 ## 5. Strengths  
 
-Where does your system seem to work well  
-
-Prompts:  
-
-- User types for which it gives reasonable results  
-- Any patterns you think your scoring captures correctly  
-- Cases where the recommendations matched your intuition  
+- It works well for listeners with clear, consistent tastes. The pop, lofi, and rock profiles all got a near-perfect #1 song.
+- It clearly separates very different listeners. A calm lofi fan and an intense rock fan got completely different lists.
+- Happiness of the sound helps a lot. Two listeners who both want high energy still get different lists if one wants upbeat songs and the other wants dark ones.
+- Every recommendation explains itself, so it's easy to see why a song was picked.
 
 ---
 
@@ -102,14 +95,9 @@ I also re-ran the profiles with energy doubled (2.0 to 4.0) and genre halved (1.
 
 ## 8. Future Work  
 
-Ideas for how you would improve the model next.  
-
-Prompts:  
-
-- Additional features or preferences  
-- Better ways to explain recommendations  
-- Improving diversity among the top results  
-- Handling more complex user tastes  
+- **Smarter matching for labels.** Give partial credit for similar words, like "sad" and "melancholic" or "pop" and "indie pop."
+- **Admit when there's no good match.** Show a warning when even the best song scores low, instead of presenting a confident top 5.
+- **A bigger, more balanced catalog.** Add more sad, very calm, and mid-energy songs, plus more than one song per genre.
 
 ---
 
@@ -122,3 +110,14 @@ Prompts:
 - What you learned about recommender systems  
 - Something unexpected or interesting you discovered  
 - How this changed the way you think about music recommendation apps
+
+
+**Biggest learning moment:** The stress test. My recommender worked well for normal profiles, so I thought it was done. Then a "sad but energetic" listener got Sunrise City, one of the happiest songs, at #2. That showed me a system can look correct on easy cases and still fail on harder ones. I only found the problem because I tested profiles that were designed to break it.
+
+The stress test was the hardest part of the project, as it worked really well for almost all of my profiles so I thought it would do well for the test however when a "sad" profile got one of the happiest songs I had to figure out how to fix this issue.
+ 
+**How AI tools helped, and when I double-checked:** AI helped me plan the scoring rules, write the code, and come up with edge cases I wouldn't have thought of. But I couldn't trust everything it gave me. Some of the code it wrote had a small bug: when breaking ties, a target energy of 0.0 was treated as if the user had given no target. The 8 songs it generated came with its own assumptions, like "metal is angry." When I changed the weights, the README still described the old ones. I learned to run the code myself, compare the output with what I expected, and read the reasons for each song instead of just looking at the top result.
+ 
+**What surprised me:** I was surprised to find out how difficult making a reccomender algorithm really is. It made me think about how complex real reccomendation algorithms are in big companies. 
+ 
+**What I'd try next:** I'd give partial credit for similar labels, like "sad" and "melancholic." I'd also add a warning when no song is a good match. Finally, I'd try adding real listening behavior, like skips and replays, to see how much better the recommendations get compared to features alone.
